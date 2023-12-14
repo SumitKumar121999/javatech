@@ -11,7 +11,7 @@ public class DevopsIntegrationApplication {
 
     @GetMapping("/output")
     public String message() {
-        return "welcome to output screen and its working fine !!!";
+        return "Welcome to output screen and its working fine !!!";
     }
 
     public static void main(String[] args) {
