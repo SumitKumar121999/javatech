@@ -43,7 +43,7 @@ pipeline {
 		 stage('Run Docker container on Jenkins Agent') {
              
             steps {
-                sh "docker run -d -p 4030:8081 sksumit19999/dockertask-integration"
+                sh "docker run -d -p 4030:8080 sksumit19999/dockertask-integration"
  
             }
         }
