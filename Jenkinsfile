@@ -39,11 +39,16 @@ pipeline {
         }
 
        
-        stage('Run Docker container on remote hosts') {
+		
+		 stage('Run Docker container on Jenkins Agent') {
+             
             steps {
-                sh "docker -H ssh://jenkins@172.19.155.255 run -d -p 4001:8080 sksumit19999/dockertask-integration"
+                sh "docker run -d -p 4030:80 sksumit19999/dockertask-integration"
+ 
             }
         }
+		
+	
     }
     post {
         success {
