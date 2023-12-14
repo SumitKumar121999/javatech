@@ -14,7 +14,7 @@ pipeline {
         stage('Build docker image') {
             steps {
                 script {
-                    sh 'docker build -t sksumit1999/dockertask-integration .'
+                    sh 'docker build -t sksumit19999/dockertask-integration .'
                 }
             }
         }
@@ -23,9 +23,9 @@ pipeline {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'dockerHub', variable: 'dockerHub')]) {
-                        sh 'docker login -u sksumit1999 -p ${dockerHub}'
+                        sh 'docker login -u sksumit19999 -p ${dockerHub}'
                     }
-                    sh 'docker push sksumit1999/dockertask-integration'
+                    sh 'docker push sksumit19999/dockertask-integration'
                 }
             }
         }
@@ -33,7 +33,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withCredentials([string(credentialsId: 'sonartoken2', variable: 'SONAR_TOKEN')]) {
-                    sh "mvn sonar:sonar -Dsonar.projectKey=tasklast -Dsonar.host.url=http://172.23.148.54:9000 -Dsonar.login=${env.SONAR_TOKEN}"
+                    sh "mvn sonar:sonar -Dsonar.projectKey=tasklast -Dsonar.host.url=http://172.19.155.255:9000 -Dsonar.login=${env.SONAR_TOKEN}"
                 }
             }
         }
