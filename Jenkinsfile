@@ -20,14 +20,21 @@ pipeline {
         stage('Push image to Hub'){
             steps{
                 script{
-                   withCredentials([string(credentialsId: 'dockerHub', variable: 'dockerHub')]) {
-                   sh 'docker login -u sksumit1999 -p ${dockerHub}'
-
-}
-                   sh 'docker push sksumit1999/dockertask-integration'
+                    withCredentials([string(credentialsId: 'dockerHub', variable: 'dockerHub')]) {
+                        sh 'docker login -u sksumit1999 -p ${dockerHub}'
+                    }
+                    sh 'docker push sksumit1999/dockertask-integration'
                 }
             }
         }
-      
+        stage("SonarQube Analysis") {
+            steps {
+                dir('temp') {
+                    withCredentials([string(credentialsId: 'sonartoken2', variable: 'SONAR_TOKEN')]) {
+                        sh "mvn sonar:sonar -Dsonar.projectKey=tasklast -Dsonar.host.url=http://172.23.148.54:9590 -Dsonar.login=${env.SONAR_TOKEN}" 
+                    }
+                }
+            }
+        }
     }
 }
