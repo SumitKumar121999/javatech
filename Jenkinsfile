@@ -33,7 +33,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withCredentials([string(credentialsId: 'sonartoken2', variable: 'SONAR_TOKEN')]) {
-                    sh "mvn sonar:sonar -Dsonar.projectKey=tasklast -Dsonar.host.url=http://172.23.148.54:9590 -Dsonar.login=${env.SONAR_TOKEN}"
+                    sh "mvn sonar:sonar -Dsonar.projectKey=tasklast -Dsonar.host.url=http://172.23.148.54:9000 -Dsonar.login=${env.SONAR_TOKEN}"
                 }
             }
         }
